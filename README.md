@@ -1,3 +1,21 @@
+
+
+# siriwavejs
+
+## With random number data from http://global-mind.org
+
+```
+npm install
+
+## example /default env variables (optional)
+export PORT=3000
+export URL="http://localhost:3000"
+
+npm start
+```
+
+
+### Forked readme...
 ![image](https://s3.amazonaws.com/f.cl.ly/items/2r2i3p2G262M271N0F2M/siri.gif)
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/CaffeinaLab/SiriWaveJS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)

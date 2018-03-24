@@ -1,24 +1,30 @@
 {
   "name": "siriwavejs",
   "version": "2.0.0",
-  "description": "The Siri wave replicated in a JS library.",
+  "description": "The Siri wave replicated in a JS library; using Global Consciousness Project for random number data to influence display.",
   "main": "siriwave.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node api.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/caffeinalab/siriwavejs.git"
+    "url": "git+https://github.com/redcap3000/siriwavejs.git"
   },
   "keywords": [
+    "gcp",
+    "consciousness",
     "siri",
     "siriwave",
     "ios"
   ],
-  "author": "Flavio De Stefano",
+  "author": "Ronaldo Barbachano",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/caffeinalab/siriwavejs/issues"
+    "url": "https://github.com/redcap3000/siriwavejs/issues"
   },
-  "homepage": "https://github.com/caffeinalab/siriwavejs#readme"
+  "homepage": "https://github.com/redcap3000/siriwavejs#readme",
+  "dependencies": {
+    "request": "^2.85.0"
+  }
 }

@@ -55,20 +55,19 @@
 			bottom: 20px;
 		}
 	</style>
+		   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		</head>
 	<body>
 
-		<div id="title">SiriWave JS</div>
 
 		<div>
 			<div id="container-classic" class="container">
-				<img src="http://pngimg.com/upload/iphone_PNG5735.png" />
 				<div class="iphone-display">
 					<div class="subcontainer" id="container-classic-canvas""></div>
 				</div>
 			</div>
 
 			<div id="container-ios9" class="container">
-				<img src="http://pngimg.com/upload/iphone_PNG5735.png" />
 				<div class="iphone-display">
 					<div class="subcontainer" id="container-ios9-canvas"></div>
 				</div>
@@ -78,19 +77,90 @@
 		<script src="siriwave.js"></script>
 
 		<script>
-			var $siri_classic = document.getElementById('container-classic-canvas');
-			var SW = new SiriWave({
-				amplitude: 1,
-				container: document.getElementById('container-classic-canvas'),
-				autostart: true,
-			});
-			var SW9 = new SiriWave({
+
+				 $siri_classic = document.getElementById('container-classic-canvas');
+		
+			 SW9 = new SiriWave({
 				amplitude: 1,
 				container: document.getElementById('container-ios9-canvas'),
 				autostart: true,
-				style: 'ios9'
+				style: 'ios9',
+				cover : true,
 			});
-		</script>
 
+				amplitudeMap = {
+    			'pink' : 0.1,
+    			'green' : 0.8,
+    			'yellowgreen' : 0.3,
+    			'#ECB176' : 0.4,
+    			'#0d98ba' : 0.5,
+    			'blue' : 0.9,
+    			'darkblue' : 1
+    		}
+    			speedMap = {
+    			'pink' : 0.1,
+    			'green' : 0.6,
+    			'yellowgreen' : 0.5,
+    			'#ECB176' : 0.4,
+    			'#0d98ba' : 0.3,
+    			'blue' : 0.2,
+    			'darkblue' : 0.1
+    		}
+	var theUrl = '/eegData';
+		    			setInterval(function(){
+		        		 $.ajax({
+		        		 	url: theUrl, success: function(result){
+		        		 		console.log(result)
+						        //$("#div1").html(result);
+						        for(var key in result){
+						        		// get old location to swap out?
+						        	
+						        		/*
+						        		100-103 green, 
+						        		103-107 yellowish green, 
+						        		107-114, reddish yellow, 
+						        		114 and greater, red
+										97-100 green, 
+										93-197 bluish-green, 
+										86-83 blue, 
+										86 and smaller, purplish or dark blue
+						        		*/
+						        		eggValue = result[key]
+						        		if(eggValue > 100 && eggValue < 103){	
+						        			animation = 'green';
+						        		}else if(eggValue >  102 && eggValue < 108){
+						        			animation = 'yellowgreen';
+						        		}else if(eggValue > 107 && eggValue < 115){
+						        			// redish yellow
+						        			animation = '#ECB176';
+						        		}else if(eggValue > 114 && eggValue < 146){
+						        			animation = 'red';
+						        		}else if(eggValue < 101 && eggValue > 96){
+						        			animation = 'green';
+						        		}else if(eggValue > 89 && eggValue < 98 ){
+						        			animation = '#0d98ba';
+						        		}else if(eggValue < 90 && eggValue > 82){
+						        			animation = 'blue'
+						        		}else if(eggValue < 83){
+						        			animation = 'darkblue'
+						        		}else{
+						        			// error???
+						        			console.log("Error value : " + eggValue)
+						        			animation = 'pink'
+						        		}
+						        		//console.log(SW9)
+						        		//console.log(speedMap[animation])
+										SW9.setAmplitude(amplitudeMap[animation])
+										SW9.setSpeed(speedMap[animation])
+
+										//SW9.stop()
+						        
+						      
+						        }
+				
+						    }
+						})},1000);
+
+		</script>
 	</body>
 	</html>
